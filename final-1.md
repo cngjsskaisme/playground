@@ -1,123 +1,179 @@
-1. 객관식 문제 풀이 설명
+---
 
-(a) ii. (ab?)(a.*c)
-이 정규식은 'ab' 또는 'a'에 이어 임의의 문자가 0번 이상 나온 후 'c'가 오는 패턴을 매칭합니다. 따라서 'abc'를 매칭할 수 있습니다.
+### 문제 1: 올바른 답을 선택하세요.
 
-(b) i. It automatically closes the resource associated with it when execution leaves the block
-with 블록은 파일, 네트워크 소켓 등의 리소스를 안전하게 활용할 수 있도록 해줍니다. with 블록을 벗어나면 자동으로 해당 리소스를 close합니다.
+1. **(a)** `abc` 문자열을 매칭할 수 있는 정규 표현식은 무엇입니까?
+   - i. `[a-z]*cc+`
+   - ii. `(ab?)(a.*c)`
+   -
 
-(c) iv. Dictionaries allow any type of data to be used to refer to stored data, rather than requiring an index number
-딕셔너리는 인덱스 번호가 아닌 키(key)를 통해 값에 접근할 수 있습니다. 리스트는 인덱스로만 접근 가능합니다. 또한 딕셔너리의 키로는 숫자, 문자열 등 다양한 자료형을 사용할 수 있습니다.
+파일에 포함된 문제들을 풀고 각각의 해답을 한국어로 설명하겠습니다.
 
-2. 함수 작성 문제 풀이
+---
 
-(a) 문자열 길이가 3 이상이면 앞 3자리만 반환하고, 그렇지 않으면 원래 문자열을 반환하는 shorten 함수입니다.
+### 문제 1: 올바른 답을 선택하세요.
+
+1. **(a)** `abc` 문자열을 매칭할 수 있는 정규 표현식은 무엇입니까?
+   - i. `[a-z]*cc+`
+   - ii. `(ab?)(a.*c)`
+   - iii. `(az*)+.*`
+   - iv. `ab+(bc)?`
+
+   **답:** ii. `(ab?)(a.*c)`
+
+   **설명:** `(ab?)(a.*c)`는 `abc` 문자열을 매칭할 수 있습니다. `ab?`는 `a` 또는 `ab`를 매칭하고, `a.*c`는 `a`로 시작하고 `c`로 끝나는 문자열을 매칭합니다.
+
+2. **(b)** Python에서 `with` 블록의 사용을 가장 잘 설명하는 것은 무엇입니까?
+   - i. 블록을 벗어날 때 자동으로 관련된 리소스를 닫습니다.
+   - ii. 파일 이름 대신 파일 내용과 함께 정규 표현식을 사용할 수 있습니다.
+   - iii. `sys.argv` 리스트를 채워서 명령줄 인수에서 파일 이름을 읽을 수 있게 합니다.
+   - iv. 프로그래머가 오류 처리 코드를 포함할 필요가 없도록 파일에서 잘못된 입력을 다시 읽는 과정을 자동화합니다.
+
+   **답:** i. 블록을 벗어날 때 자동으로 관련된 리소스를 닫습니다.
+
+   **설명:** `with` 블록은 파일이나 네트워크 연결과 같은 리소스를 자동으로 닫아줍니다.
+
+3. **(c)** 리스트와 딕셔너리의 차이를 가장 잘 설명하는 것은 무엇입니까?
+   - i. 리스트는 리스트 빌딩 패턴을 사용할 수 있지만, 딕셔너리에는 유사한 패턴이 없습니다.
+   - ii. 딕셔너리는 사용자 정의 함수에 의해 생성된 데이터 대신 매칭된 정규 표현식에서 데이터를 추출하는 데 사용할 수 있습니다.
+   - iii. 딕셔너리는 문자열만 저장합니다.
+   - iv. 딕셔너리는 저장된 데이터를 참조하기 위해 인덱스 번호가 아닌 모든 유형의 데이터를 허용합니다.
+
+   **답:** iv. 딕셔너리는 저장된 데이터를 참조하기 위해 인덱스 번호가 아닌 모든 유형의 데이터를 허용합니다.
+
+   **설명:** 리스트는 순서가 있는 데이터를 인덱스로 참조하는 반면, 딕셔너리는 키를 사용하여 데이터를 참조할 수 있습니다.
+
+---
+
+### 문제 2: 두 부분으로 구성된 문제
+
+(a) 문자열의 처음 세 글자만 남기는 함수 `shorten`을 작성하세요. 
 
 ```python
-def shorten(str_input):
+def shorten(s: str) -> str:
     """
-    Returns the first 3 characters of the input string.
-    If the string is shorter than 3 characters, returns the original string.
-
-    Args:
-        str_input (str): Input string to be shortened
-
-    Returns:
-        str: Shortened string or original string if shorter than 3 characters
+    주어진 문자열의 처음 세 글자만 반환하는 함수.
+    
+    파라미터:
+    s (str): 입력 문자열
+    
+    반환값:
+    str: 처음 세 글자를 포함하는 문자열 또는 원래 문자열
+    
+    예시:
+    >>> shorten('banana')
+    'ban'
+    >>> shorten('go')
+    'go'
     """
-    if len(str_input) < 3:
-        return str_input
-    else:
-        return str_input[:3]
+    return s[:3]
+
+# 예시 실행
+print(shorten("banana"))  # 출력: "ban"
+print(shorten("go"))  # 출력: "go"
 ```
 
-(b) 문자열 리스트를 받아 문자열 길이가 3 이상인 경우에만 shorten 함수를 적용한 새 리스트를 반환하는 shortened 함수입니다.
+**설명:** `shorten` 함수는 입력된 문자열의 처음 세 글자만 반환합니다. 문자열 길이가 3보다 짧으면 원래 문자열을 반환합니다.
+
+(b) 문자열 리스트를 받아 각 문자열을 `shorten` 함수를 이용해 처리한 결과 리스트를 반환하는 함수 `shortened`를 작성하세요.
 
 ```python
-def shortened(str_list):
-    result = []
-    for s in str_list:
-        if len(s) > 3:
-            result.append(shorten(s))
-        else:
-            result.append(s)
-    return result
+def shortened(lst):
+    return [shorten(s) for s in lst if len(s) > 3]
+
+# 예시 실행
+input_list = ['banana', 'go', 'hat', 'syrup', 'ground', 'a']
+result = shortened(input_list)
+print(result)  # 출력: ['ban', 'syr', 'gro']
 ```
 
-3. 커맨드라인 인자를 사용하는 프로그램 작성
+**설명:** `shortened` 함수는 리스트의 각 문자열에 대해 길이가 3보다 큰 문자열만 `shorten` 함수를 적용하여 결과 리스트를 반환합니다.
 
-이 프로그램은 커맨드라인에서 두 개의 정수 인자를 받아 첫번째 인자부터 두번째 인자까지의 제곱의 합을 계산하여 출력합니다.
+---
+
+### 문제 3: 두 개의 명령줄 인수를 받아서 특정 계산을 수행하는 Python 프로그램을 작성하세요.
 
 ```python
 import sys
 
-if len(sys.argv) != 3:
-    print('Bad input')
-else:
+def main():
+    if len(sys.argv) != 3:
+        print("Bad input")
+        return
+
     try:
         x = int(sys.argv[1])
         y = int(sys.argv[2])
         if x < 0 or y < 0:
-            print('Bad input')
-        else:
-            sum = 0
-            for i in range(x, y+1):
-                sum += i**2
-            print(sum)
+            raise ValueError
     except ValueError:
-        print('Bad input')
+        print("Bad input")
+        return
+
+    total_sum = sum(i ** y for i in range(x + 1))
+    print(total_sum)
+
+if __name__ == "__main__":
+    main()
 ```
 
-4. 파일에서 괄호 안 내용만 출력하는 프로그램 작성
+**설명:** 이 프로그램은 두 개의 명령줄 인수를 받아 각각 `x`와 `y`로 변환합니다. `x`와 `y`가 양의 정수인 경우, 0부터 `x`까지의 각 정수를 `y`제곱한 값을 더하여 출력합니다. 인수가 잘못된 경우 "Bad input"을 출력합니다.
 
-이 프로그램은 'abc.txt' 파일을 읽어 각 라인에서 괄호 안에 있는 내용만 출력합니다.
+---
+
+### 문제 4: `abc.txt` 파일의 각 줄에서 괄호 사이의 문자열을 추출하여 출력하는 Python 프로그램을 작성하세요.
 
 ```python
-with open('abc.txt', 'r') as file:
-    for line in file:
-        start = line.find('(')
-        end = line.find(')')
-        if start != -1 and end != -1:
-            print(line[start+1:end])
+def extract_parentheses(filename):
+    with open(filename, 'r') as file:
+        for line in file:
+            start = line.find('(') + 1
+            end = line.find(')')
+            if start != -1 and end != -1:
+                print(line[start:end])
+
+# 예시 실행
+extract_parentheses('abc.txt')
 ```
 
-5. 문자열 리스트에서 3번 이상 등장하는 문자열 찾기
+**설명:** `extract_parentheses` 함수는 주어진 파일에서 각 줄의 괄호 사이에 있는 문자열을 추출하여 출력합니다. `start`와 `end`를 사용하여 괄호 위치를 찾고, 해당 부분 문자열을 출력합니다.
 
-이 함수는 문자열 리스트를 받아 3번 이상 등장하는 문자열들만 모아 새 리스트로 반환합니다.
+---
+
+### 문제 5: 문자열 리스트에서 최소 3번 이상 나타나는 문자열을 반환하는 Python 함수를 작성하세요.
 
 ```python
-def find_frequent_strings(str_list):
-    freq = {}
-    for s in str_list:
-        if s in freq:
-            freq[s] += 1
-        else:
-            freq[s] = 1
-    
-    result = []
-    for s, count in freq.items():
-        if count >= 3:
-            result.append(s)
-    
-    return result
+def find_frequent_strings(lst):
+    from collections import Counter
+    count = Counter(lst)
+    return [item for item, freq in count.items() if freq >= 3]
+
+# 예시 실행
+input_list = ['cart', 'hat', 'hat', 'apple', 'hat', 'banana', 'cart', 'hat', 'apple', 'cart']
+result = find_frequent_strings(input_list)
+print(result)  # 출력: ['cart', 'hat']
 ```
 
-6. 숫자가 없는 첫번째 라인 번호 출력하는 프로그램
+**설명:** `find_frequent_strings` 함수는 `Counter`를 사용하여 리스트에서 각 문자열의 빈도를 계산하고, 빈도가 3 이상인 문자열만 반환합니다.
 
-이 프로그램은 커맨드라인 인자로 파일명을 받아 숫자가 없는 첫번째 라인의 번호를 출력합니다.
+---
+
+### 문제 6: 텍스트 파일의 각 줄을 읽어 첫 번째로 숫자를 포함하지 않은 줄의 번호를 출력하는 Python 프로그램을 작성하세요.
 
 ```python
 import sys
-import re
 
-filename = sys.argv[1]
-with open(filename, 'r') as file:
-    line_num = 1
-    for line in file:
-        if not re.search(r'\d', line):
-            print(line_num)
-            break
-        line_num += 1
+def find_first_non_numeric_line(filename):
+    with open(filename, 'r') as file:
+        for line_number, line in enumerate(file, 1):
+            if not any(char.isdigit() for char in line):
+                print(line_number)
+                return
+
+# 예시 실행
+find_first_non_numeric_line(sys.argv[1])
 ```
 
-이 문제들은 파이썬 기초 문법, 함수 작성, 파일 입출력, 정규식 등 다양한 개념을 활용하고 있습니다. 각 문제를 주의 깊게 읽고 핵심 요구사항을 파악한 다음 적절한 코드를 작성하는 연습이 필요합니다.
+**설명:** `find_first_non_numeric_line` 함수는 파일의 각 줄을 읽으면서 숫자를 포함하지 않은 첫 번째 줄의 번호를 출력합니다. `enumerate`를 사용하여 줄 번호를 추적하고, 숫자가 없는 줄을 찾으면 해당 번호를 출력합니다.
+
+---
