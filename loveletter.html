@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    @import url('https://static.toss.im/tps/main.css');
+    @import url('https://static.toss.im/tps/others.css');
+
+    * {
+      font-family: 'Toss Product Sans';
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>수영이에게 보내는 러브레터.. ㅎ</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      /* Prevent horizontal scroll */
+      overflow-y: hidden;
+      /* Prevent vertical scrolling */
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg,
+          #6a11cb 0%,
+          #2575fc 30%,
+          #3a7bd5 50%,
+          #3f51b5 70%,
+          #5b86e5 100%);
+      background-size: 200% 200%;
+      animation: aurora 10s ease infinite;
+      font-family: 'Toss Product Sans', sans-serif;
+      flex-direction: column;
+    }
+
+    @keyframes aurora {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .h1,
+    .h2 {
+      font-weight: bold;
+      color: white;
+      text-align: center;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+    }
+
+    .h1 {
+      font-size: 3rem;
+      animation: fadeInUp 0.7s ease-out forwards;
+      animation-delay: 0.5s;
+      margin-bottom: 0.2em;
+    }
+
+    .h2 {
+      font-size: 2rem;
+      animation: fadeInUp 0.7s ease-out forwards;
+      animation-delay: 1.5s;
+      margin-bottom: 1.5em;
+    }
+
+    .card {
+      width: 100%;
+      height: 400px;
+      padding: 20px;
+      border-radius: 15px;
+      background: linear-gradient(135deg,
+          #a18cd1,
+          #b3d4fc,
+          #c1c8e4,
+          #d1e9ff);
+      background-size: 200% 200%;
+      box-shadow: 0 0 20px rgba(175, 215, 250, 0.7);
+      text-align: center;
+      margin-top: 20px;
+      animation: introAnimation 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) 2s forwards, gradientAnimation 5s ease infinite;
+      transform-style: preserve-3d;
+      position: relative;
+      opacity: 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover,
+    .card:active {
+      box-shadow: 0 0 30px rgba(175, 215, 250, 0.9);
+      transform: rotateY(var(--x)) rotateX(var(--y));
+    }
+
+    .card:hover::before,
+    .card:active::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      pointer-events: none;
+      transform: translateX(var(--x)) translateY(var(--y)) rotateX(calc(var(--y) * -1deg)) rotateY(calc(var(--x) * 1deg));
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: perspective(1000px);
+    }
+
+    .card::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      pointer-events: none;
+    }
+
+    .card:hover::before,
+    .card:active::before {
+      transform: translateX(var(--x)) translateY(var(--y)) rotateX(calc(var(--y) * -1deg)) rotateY(calc(var(--x) * 1deg));
+      transition: transform 0.3s ease;
+    }
+
+    body {
+      perspective: 1000px;
+    }
+
+    .card {
+      transform-style: preserve-3d;
+      transform-origin: center center;
+    }
+
+    .card-container {
+      position: relative;
+      display: inline-block;
+      width: 300px;
+      transform: translateX(-1em);
+    }
+
+    .card-container:hover .card,
+    .card-container .card {
+      transform: rotateY(0deg) rotateX(0deg) translateX(-1em);
+      /* Reset after intro animation */
+    }
+
+    .card-container:hover .card::before {
+      transform: translateX(var(--x)) translateY(var(--y)) rotateX(calc(var(--y) * -0.1deg)) rotateY(calc(var(--x) * 0.1deg));
+    }
+
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes introAnimation {
+      0% {
+        transform: rotateY(0deg) rotateX(0deg) scale(0.8);
+        opacity: 0;
+      }
+
+      100% {
+        transform: rotateY(360deg) rotateX(0deg) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .card-container {
+      position: relative;
+      perspective: 1000px;
+    }
+
+    .card-container .card {
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .flipped {
+      animation: flipAnimation 0.4s forwards;
+    }
+
+    @keyframes flipAnimation {
+      0% {
+        transform: rotateY(0deg) translateX(-1em);
+      }
+
+      100% {
+        transform: rotateY(360deg) translateX(-1em);
+      }
+    }
+
+    .unflipped {
+      animation: unflipAnimation 0.4s forwards;
+    }
+
+    @keyframes unflipAnimation {
+      0% {
+        transform: rotateY(0deg) translateX(-1em);
+      }
+
+      100% {
+        transform: rotateY(360deg) translateX(-1em);
+      }
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      /* Dim background */
+      display: flex;
+      align-items: flex-end;
+      /* Align the sliding div to the bottom */
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      /* Transition for overlay */
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .password-section {
+      position: relative;
+      /* Ensure positioning context for the close button */
+      width: 100%;
+      height: 300px;
+      background-color: #ffffff;
+      /* Background color of the sliding div */
+      border-radius: 20px 20px 0 0;
+      /* Round corners at the top */
+      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+      /* Optional shadow for effect */
+      transform: translateY(100%);
+      /* Start hidden (slid down) */
+      transition: transform 0.5s ease;
+      /* Animation for sliding up/down */
+      display: flex;
+      justify-content: center;
+    }
+
+    .letter-section {
+      position: relative;
+      /* Ensure positioning context for the close button */
+      width: 100%;
+      height: 100%;
+      background-color: #ffffff;
+      /* Background color of the sliding div */
+      border-radius: 20px 20px 0 0;
+      /* Round corners at the top */
+      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+      /* Optional shadow for effect */
+      transform: translateY(100%);
+      /* Start hidden (slid down) */
+      transition: transform 0.5s ease;
+      /* Animation for sliding up/down */
+      display: flex;
+      justify-content: center;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      font-weight: bold;
+      color: #000;
+      cursor: pointer;
+      padding: 5px;
+      z-index: 10;
+    }
+
+
+    .close-button:hover {
+      color: #ff0000;
+      /* Optional: Change color on hover */
+    }
+
+    .overlay.active .password-section.active {
+      transform: translateY(0);
+      /* Slide up when active */
+    }
+
+    .overlay.active .letter-section.active {
+      transform: translateY(0);
+      /* Slide up when active */
+    }
+
+    .toss-input-container {
+      position: relative;
+      width: 90%;
+      transform: translateY(40%);
+    }
+
+    .toss-input {
+      width: 100%;
+      padding: 15px 10px 5px 10px;
+      font-size: 40px;
+      border: none;
+      border-bottom: 2px solid #ddd;
+      background-color: transparent;
+      color: #333;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
+    }
+
+    .toss-input:focus {
+      border-bottom-color: #0064ff;
+      /* Toss's signature blue color */
+      outline: none;
+    }
+
+    .toss-input::placeholder {
+      color: transparent;
+      /* Hide placeholder text when not focused */
+    }
+
+    .toss-input:focus::placeholder {
+      color: #aaa;
+      /* Show placeholder text on focus */
+    }
+
+    .toss-label {
+      position: absolute;
+      left: 10px;
+      top: 15px;
+      font-size: 40px;
+      color: #aaa;
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .toss-input:focus+.toss-label,
+    .toss-input:not(:placeholder-shown)+.toss-label {
+      top: -10px;
+      left: 10px;
+      font-size: 12px;
+      color: #0064ff;
+      /* Toss's signature blue color */
+    }
+
+    .love-letter-template {
+      padding-top: 4em;
+      overflow-y: scroll;
+      background-color: #ffffff;
+      padding: 30px 40px;
+      width: 600px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      color: #333;
+      font-family: 'Dancing Script', cursive;
+      /* Handwritten-style font */
+      line-height: 1.8;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+    .letter-header {
+      margin-top: 5em;
+      text-align: right;
+    }
+
+    .greeting {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: left;
+      margin-bottom: 40px;
+    }
+
+    .date {
+      font-size: 18px;
+      color: #666;
+    }
+
+    .letter-body p {
+      margin: 15px 0;
+      font-size: 20px;
+    }
+
+    .signature {
+      margin-top: 40px;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: right;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="h1">
+    🥰수영이에게🤗<br>
+    편지가 왔어요!
+  </div>
+  <div class="h2">
+    <br>무슨 내용일까? (두근두근)
+  </div>
+
+  <div class="card-container" style="cursor: pointer">
+    <div class="card" style="display: flex; align-items: center; justify-content: center;">
+      <div id="card-text" style="font-size: 1.5em; font-weight: bold;">
+        여기를 눌러<br>
+        카드를 여세요.
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay">
+    <div class="password-section">
+      <button class="close-button">&times;</button>
+      <div class="toss-input-container">
+        <input type="password" id="password" class="toss-input" placeholder="뭘까ㅎㅎ🤪😵‍💫🤯😜🤪">
+        <label for="password" class="toss-label">비밀번호ㅎㅎㅎㅎ</label>
+      </div>
+    </div>
+    <div class="letter-section">
+      <button class="close-button">&times;</button>
+      <div class="love-letter-template" data-encrypted="true" data-iv="62FIyBxCB1D6p6Kg"
+        data-salt="xfeTbe5kJplLF4EGiKt8gw==">
+        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
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <div class="encrypted-area">
+
+  </div>
+
+
+  <script>
+    $(document).ready(function () {
+      var isDecrypted = false;
+
+      $(".toss-input").on("keyup", async function (e) {
+        if (e.keyCode !== 13) { return }
+        try {
+          await decryptDomElement(".love-letter-template", $(this).val());
+          isDecrypted = true;
+          closePopup();
+          openPopupFor("letter-section")
+        } catch (e) {
+          alert("땡 ㅎㅎ")
+        }
+      })
+
+      const openPopupFor = (targetClass) => {
+        Array.from($(".overlay").children()).forEach((el) => {
+          const targetDOM = $(el);
+          $(".overlay").addClass("active");
+          $(el).hide();
+          $(el).removeClass("active");
+          if (targetDOM.hasClass(targetClass)) {
+            $(el).show();
+            $(el).addClass("active")
+          }
+        })
+      }
+
+      const closePopup = () => {
+        $("#card-text").fadeIn(400);
+        Array.from($(".overlay").children()).forEach((el) => {
+          const targetDOM = $(el);
+          $(".overlay").removeClass("active");
+          targetDOM.removeClass("active");
+        })
+      }
+
+      setTimeout(function () {
+        $(".card-container").on("click", function () {
+          const card = $(this);
+          if (card.hasClass('flipped')) {
+            card.addClass('unflipped');
+            card.removeClass('flipped');
+          } else {
+            card.addClass('flipped');
+            card.removeClass('unflipped');
+          }
+          $("#card-text").fadeOut(400);
+          if (!isDecrypted) {
+            openPopupFor("password-section");
+            return
+          }
+          openPopupFor("letter-section")
+        })
+        $(".close-button").on("click", function () {
+          closePopup();
+        })
+      }, 3000)
+
+      document.querySelectorAll('.card-container').forEach(container => {
+        container.addEventListener('mousemove', (e) => {
+          const card = document.querySelector('.card-container');
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+
+          card.style.setProperty('--x', `${x / 10}px`);
+          card.style.setProperty('--y', `${y / 10}px`);
+          card.style.transform = `rotateY(${x / 20}deg) rotateX(${y / -20}deg) translateX(-1em)`;
+        });
+
+        container.addEventListener('mouseleave', () => {
+          const card = document.querySelector('.card-container');
+          card.style.transform = `rotateY(0deg) rotateX(0deg) translateX(-1em)`;
+          card.style.setProperty('--x', '0px');
+          card.style.setProperty('--y', '0px');
+        });
+      });
+
+      if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation', (event) => {
+          const card = document.querySelector('.card-container');
+          const tiltX = event.gamma;
+          const tiltY = event.beta;
+
+          const x = Math.min(Math.max(tiltX, -30), 30);
+          const y = Math.min(Math.max(tiltY, -30), 30);
+
+          card.style.transform = `rotateY(${x}deg) rotateX(${y * -1}deg) translateX(-1em)`;
+        });
+      }
+    })
+
+    async function deriveKeyFromPassword(password, salt) {
+      const enc = new TextEncoder().encode(password);
+
+      const keyMaterial = await crypto.subtle.importKey(
+        "raw",
+        enc,
+        { name: "PBKDF2" },
+        false,
+        ["deriveKey"]
+      );
+
+      return crypto.subtle.deriveKey(
+        {
+          name: "PBKDF2",
+          salt: salt,
+          iterations: 100000,
+          hash: "SHA-256"
+        },
+        keyMaterial,
+        { name: "AES-GCM", length: 256 },
+        false,
+        ["encrypt", "decrypt"]
+      );
+    }
+
+    async function decryptDomElement(selector, password) {
+      // Select the encrypted DOM element
+      const encryptedElement = document.querySelector(selector);
+
+      if (!encryptedElement) {
+        throw new Error(`Element not found with selector: ${selector}`);
+      }
+
+      // Check if the element has the expected data attributes
+      if (!encryptedElement.dataset.encrypted || !encryptedElement.dataset.iv || !encryptedElement.dataset.salt) {
+        throw new Error("Element does not appear to be properly encrypted.");
+      }
+
+      // Get the encrypted data, IV, and salt from the data attributes
+      const encryptedBase64 = encryptedElement.textContent;
+      const ivBase64 = encryptedElement.dataset.iv;
+      const saltBase64 = encryptedElement.dataset.salt;
+
+      // Convert the Base64 strings back to ArrayBuffers
+      const encryptedData = base64ToArrayBuffer(encryptedBase64);
+      const iv = base64ToArrayBuffer(ivBase64);
+      const salt = base64ToArrayBuffer(saltBase64);
+
+      // Derive the key from the password using the same salt
+      const passwordKey = await deriveKeyFromPassword(password, salt);
+
+      // Decrypt the data using AES-GCM
+      const decryptedData = await crypto.subtle.decrypt(
+        {
+          name: "AES-GCM",
+          iv: iv
+        },
+        passwordKey,
+        encryptedData
+      );
+
+      // Decode the decrypted data back to a string
+      const decryptedHTML = new TextDecoder().decode(decryptedData);
+
+      // Replace the encrypted element with the decrypted HTML
+      encryptedElement.outerHTML = decryptedHTML;
+    }
+
+    function base64ToArrayBuffer(base64) {
+      const binaryString = window.atob(base64);
+      const len = binaryString.length;
+      const bytes = new Uint8Array(len);
+      for (let i = 0; i < len; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+      return bytes.buffer;
+    }
+
+
+
+  </script>
+</body>
+
+</html>
